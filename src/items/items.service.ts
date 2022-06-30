@@ -10,13 +10,9 @@ export class ItemsService {
         return await this.itemModel.find()
     }
 
-    async createItem(createItemdto) : Promise<Item> {
-        const item = new this.itemModel({
-            name : createItemdto.name ,
-            description : createItemdto.description,
-            qty : createItemdto.qty
-        })
-        return await item.save()
+    async createItem(item) : Promise<Item> {
+        const newItem=new this.itemModel(item)
+        return await newItem.save()
     }
 
     async findOne(id){
@@ -24,25 +20,10 @@ export class ItemsService {
     }
 
     async deleteItem(id){
-        return await this.itemModel.deleteOne({_id : id})}
+        return await this.itemModel.findByIdAndDelete({id})}
 
     async updateItem(id,itemDto){
-
-       let item= await this.itemModel.findById(id)
-       if (itemDto.name) item.name=itemDto.name;
-       if(itemDto.description) item.description=itemDto.description
-       if(itemDto.qty) item.qty=itemDto.qty;
-       
-       return await this.itemModel.updateOne({_id: id},{
-        $set : item
-       })
-        // return this.items.find((item,index)=>{
-        //     if(item.id===id){
-        //        item.name=itemDto.name;
-        //        item.description=itemDto.description;
-        //        item.qty=itemDto.qty
-        //        return this.items[index]=item;
-        //     }
-        // })?? "Item not Exist!"
+       return await this.itemModel.findByIdAndUpdate(id ,itemDto ,{ new : true}
+       )
     }
 }

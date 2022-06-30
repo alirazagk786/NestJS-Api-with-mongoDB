@@ -21,10 +21,6 @@ export class ItemsController {
     findOne(@Param('id') id){
         return this.itemservice.findOne(id)
     }
-    // @Get(':id')
-    // findOne(@Param() param){
-    //     return param.id
-    // }
 
     @Delete(':id')
     deleteItem(@Param('id') id ){
