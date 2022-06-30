@@ -32,15 +32,4 @@ export class UserController {
     updateUser(@Param('id') id , @Body() userDto : CreateUserDto ){
         return this.userService.updateUser(id,userDto)
     }
-
-
-    // @Get('/')
-    // getAllUser(){
-    //     return this.userService.getUser();
-    // }
-
-    // @Post('/create')
-    // createUser(@Body() craeteuserdto : CreateUserDto) : Promise<User> {
-    //     return this.userService.createUser(craeteuserdto);
-    // }
 }
