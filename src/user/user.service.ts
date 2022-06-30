@@ -25,12 +25,7 @@ export class UserService {
         return await this.userRepository.delete(id)
     }
     async updateUser(id,user){
-        let updatedUser=await this.userRepository.findOne(id)
-        if(user.name) updatedUser.name=user.name;
-        if(user.email) updatedUser.email=user.email
-        if(user.age) updatedUser.age=user.age
-
-        return await this.userRepository.update(id,updatedUser)
+        return await this.userRepository.update(id,user)
     }
 
 
